@@ -122,19 +122,19 @@ def about(request):
 
 def PostUpvote(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
-    if post.likes.filter(id=request.user.id).exists():
-        post.likes.remove(request.user)
+    if post.upvote.filter(id=request.user.id).exists():
+        post.upvote.remove(request.user)
     else:
-        post.likes.add(request.user)
+        post.upvote.add(request.user)
 
     return HttpResponseRedirect(reverse('post-detail', args=[str(pk)]))
 
 def PostDownvote(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
-    if post.likes.filter(id=request.user.id).exists():
-        post.likes.remove(request.user)
+    if post.downvote.filter(id=request.user.id).exists():
+        post.downvote.remove(request.user)
     else:
-        post.likes.add(request.user)
+        post.downvote.add(request.user)
 
     return HttpResponseRedirect(reverse('post-detail', args=[str(pk)]))
 
