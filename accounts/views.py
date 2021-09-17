@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
-# from feed.models import Post 
+from feed.models import Post 
 from .models import Profile
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
@@ -46,18 +46,17 @@ def profile(request, username):
 	profileuser = User.objects.get(username=username)
 	p = profileuser.profile
 	u = p.user
-	#user_posts = Post.objects.filter(author=profileuser).order_by('-date_posted')
+	user_posts = Post.objects.filter(author=profileuser).order_by('-date_posted')
 	
 
 	context = {
 		'u' : u,
 		'u_form': u_form,
 		'p_form': p_form,
-		#'user_posts' : user_posts,
+		'user_posts' : user_posts,
 		'user' : user,
 		'profileuser' : profileuser,
 	}
-	return HttpResponse(context)
 	return render(request, 'accounts/profile.html', context)
 
 @login_required
