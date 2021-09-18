@@ -42,7 +42,7 @@ class PostListView(LoginRequiredMixin, ListView):
 
 	def get_context_data(self, **kwargs):
 		context = super(PostListView, self).get_context_data(**kwargs)
-		#context['randusers'] = User.objects.order_by('?')[:5]
+		context['randusers'] = User.objects.order_by('?')[:5]
 		
 		# likes_connected = get_object_or_404(Post, id=self.kwargs['pk'])
 		# liked = False
@@ -67,7 +67,7 @@ class PostDetailView(DetailView):
 		context['downvotes'] = reacted_by.number_of_downvotes()
 		context['comments'] = Comment.objects.filter(post=reacted_by)
 		# context['post_is_liked'] = liked
-		#context['randusers'] = User.objects.order_by('?')[:5]
+		context['randusers'] = User.objects.order_by('?')[:5]
 		return context
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -76,7 +76,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 	def get_context_data(self, **kwargs):
 		context = super(PostCreateView, self).get_context_data(**kwargs)
-		#context['randusers'] = User.objects.order_by('?')[:5]
+		context['randusers'] = User.objects.order_by('?')[:5]
 		return context
 
 	def form_valid(self, form):
@@ -89,7 +89,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 	def get_context_data(self, **kwargs):
 		context = super(PostUpdateView, self).get_context_data(**kwargs)
-		#context['randusers'] = User.objects.order_by('?')[:5]
+		context['randusers'] = User.objects.order_by('?')[:5]
 		return context
 
 	def form_valid(self, form):
@@ -109,7 +109,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 	def get_context_data(self, **kwargs):
 		context = super(PostDeleteView, self).get_context_data(**kwargs)
-		#context['randusers'] = User.objects.order_by('?')[:5]
+		context['randusers'] = User.objects.order_by('?')[:5]
 		return context
 
 	def test_func(self):
