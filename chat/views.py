@@ -37,8 +37,11 @@ def Conversation(request, username):
 		print("it is a post request")
 		data = json.loads(request.body.decode("utf-8"))
 		curr_msg = data['msg']
-		new_msg = Message(sender=user, receiver=user2, content=curr_msg)
-		new_msg.save();
+		fetch_only = data['fetch_only']
+
+		if fetch_only == 0:
+			new_msg = Message(sender=user, receiver=user2, content=curr_msg)
+			new_msg.save();
 		messages = list(Message.objects.filter(Q(sender=user,receiver=user2) | Q(receiver=user,sender=user2)).order_by('timestamp').values())
 
 		messages_with_username = []
