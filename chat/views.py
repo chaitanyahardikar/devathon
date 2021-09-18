@@ -29,4 +29,13 @@ def AllChats(request):
 
 
 def Conversation(request, username):
-	pass
+	user = request.user
+	user2 = User.objects.get(username=username)
+	messages = Message.objects.filter(Q(sender=user,receiver=user2) | Q(receiver=user,sender=user2)).order_by('timestamp')
+	
+	context = {
+		'messages' : messages,
+		'user' : user,
+	}
+
+	return render(request, 'chat/conversation.html',context)

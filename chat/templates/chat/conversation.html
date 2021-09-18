@@ -1,0 +1,7 @@
+{% extends 'feed/base.html' %}
+{% block content %}
+<h1>Chats : </h1><br>
+{% for message in messages %}
+	<h2>{{ message.sender }} to {{ message.receiver }} : {{ message.content }}</h2>
+{% endfor %}
+{% endblock %}
