@@ -2,10 +2,18 @@
 {% block content %}
 	{% for post in posts %}
 		<article class="media content-section">
+      {% if post.anonymous %}
+      <img class="rounded-circle article-img" src="media/default.jpg">
+      {% else %}
 		  <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+      {% endif %}
 		  <div class="media-body">
 		    <div class="article-metadata">
+          {% if post.anonymous %}
+          <a class="mr-2" href="#">Anonymous</a>
+          {% else %}
 		      <a class="mr-2" href="{% url 'profile' post.author.id %}">{{ post.author }}</a>
+          {% endif %}
 		      <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
 		    </div>
 		    <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>

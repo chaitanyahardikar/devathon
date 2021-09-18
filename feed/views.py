@@ -71,7 +71,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
 	model = Post
-	fields = ['title', 'content', 'image']
+	fields = ['title', 'content', 'image', 'anonymous']
 
 	def get_context_data(self, **kwargs):
 		context = super(PostCreateView, self).get_context_data(**kwargs)
@@ -84,7 +84,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Post
-	fields = ['title', 'content', 'image']
+	fields = ['title', 'content', 'image', 'anonymous']
 
 	def get_context_data(self, **kwargs):
 		context = super(PostUpdateView, self).get_context_data(**kwargs)

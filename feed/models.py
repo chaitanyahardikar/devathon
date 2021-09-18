@@ -12,6 +12,7 @@ class Post(models.Model):
 	image = models.ImageField(upload_to='uploads', blank=True)
 	upvote = models.ManyToManyField(User, related_name='upvote')
 	downvote = models.ManyToManyField(User, related_name='downvote')
+	anonymous = models.BooleanField(default = False)
 
 	def number_of_upvotes(self):
 		return self.upvote.count()
