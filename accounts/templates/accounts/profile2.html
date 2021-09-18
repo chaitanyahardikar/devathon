@@ -5,12 +5,14 @@
 {% block container %} 
 
 
-   
-      <div class="container-fluid ms-5 me-4 mb-4">
-        <div class="row ms-5 me-4 mb-4">
-        
-          <div class="col-4" >
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-10 col-sm-6 col-md-4">
+
+        <div class="container-fluid">
+
+            <div class="container-fluid">
+              <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Basic Profile</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,200 +25,242 @@
                         <button class="btn btn-outline-success" type="submit">Edit Profile</button>
                       </form>
                     </div>
+                </div>
+            </nav>
+            </div>
+            
+            <div class="container-fluid">
+                <div class="row">
+                  <div class="mx-auto">
+                    <a class="navbar-brand" href="#">
+                      <img src="{{ profileuser.profile.image.url }}" alt="" width="160" height="160">
+                    </a>
                   </div>
+                </div>
+
+                <div class="container-fluid">
+                  <div class="mx-auto">
+                    <h4>Harshit Kumar</h4>
+                  </div>
+                </div>   
+            </div>
+            <hr/>
+
+            <div class="row">
+                <div class="col">
+                  <div class="px-2">
+                    <h6>website</h6>
+                  </div>
+                </div>
+                <div class="col">
+                    <div class="float-right px-2">
+                      link
+                    </div>
+                </div>
+            </div>
+            <hr/>
+
+            <div class="row">
+                <div class="col">
+                  <div class="px-2">
+                    <h6>Branch</h6>
+                  </div>
+                </div>
+                <div class="col">
+                    <div class="float-right px-2">
+                      CSE
+                    </div>
+                </div>
+            </div>
+            <hr/>
+
+            <div class="row">
+                <div class="col">
+                  <div class="px-2">
+                    <h6>Year</h6>
+                  </div>
+                </div>
+                <div class="col">
+                    <div class="float-right px-2">
+                      3rd
+                    </div>
+                </div>
+            </div>
+            <hr/>
+        </div>
+        
+
+
+
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Reputations</a>  
+                </div>
             </nav>
 
+            <br>
             <div class="row">
-                <div class="col-4">
-                <a class="navbar-brand" href="#">
-                <img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="160" height="160">
-                </a>
-                </div>
                 <div class="col">
-                <h4>Harshit Kumar</h4>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-3">
+                  <div class="px-2">
                     <h6>website</h6>
+                  </div>
                 </div>
                 <div class="col">
-                    link
+                    <div class="float-right px-2">
+                      link
+                    </div>
                 </div>
             </div>
+            <hr/>
 
-            <ul class="list-group">
-                <li class="list-group-item">first item</li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-            </ul>
-
-            
-
-
-          </div>
-
-
-
-
-
-
-
-          <div class="col">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="card-link">Card link</a>
-                  <a href="#" class="card-link">Another link</a>
+            <div class="row">
+                <div class="col">
+                  <div class="px-2">
+                    <h6>Branch</h6>
+                  </div>
                 </div>
-              </div>
-          </div>
-          
-          <div class="col">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="card-link">Card link</a>
-                  <a href="#" class="card-link">Another link</a>
+                <div class="col">
+                    <div class="float-right px-2">
+                      CSE
+                    </div>
                 </div>
-              </div>
-          </div>
+            </div>
+            <hr/>
         </div>
-      </div>
-    
-
-
-
-    
-
-    <div class="row ms-5 me-auto">
-        <div class="col-4">
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <h5>
-                        contributions
-                    </h5>
-                </li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-                <li class="list-group-item">A fourth item</li>
-                <li class="list-group-item">And a fifth one</li>
-            </ul>            
-        </div>
-        <div class="col-8">
-            <li class="list-group-item">
-                <h5>
-                    RECENT POSTS
-                </h5>
-            </li> 
-            <li class="list-group-item">
-                <div class="row">
-                    <div class="col-10">
-                    <h6>
-                    *****************
-                     </h6>
-                     </div>
-                     <div class="col">
-                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                        <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>                       
-                     </div>
-                     <div class="col">
-                         <h6>55</h6>
-
-                     </div>
-                     <div class="col">
-                         <h6>*</h6>
-                     </div>
-                     <div class="col">
-                         <h6>54</h6>
-                     </div>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="row">
-                    <div class="col-10">
-                    <h6>
-                    *****************
-                     </h6>
-                     </div>
-                     <div class="col">
-                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                        <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>                       
-                     </div>
-                     <div class="col">
-                         <h6>55</h6>
-
-                     </div>
-                     <div class="col">
-                         <h6>*</h6>
-                     </div>
-                     <div class="col">
-                         <h6>54</h6>
-                     </div>
-                </div>
-            </li> 
-            <li class="list-group-item ">
-                <div class="row">
-                    <div class="col-10">
-                    <h6>
-                    *****************
-                     </h6>
-                     </div>
-                     <div class="col">
-                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                        <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>                       
-                     </div>
-                     <div class="col">
-                         <h6>55</h6>
-
-                     </div>
-                     <div class="col">
-                         <h6>*</h6>
-                     </div>
-                     <div class="col">
-                         <h6>54</h6>
-                     </div>
-                </div>
-                
-
-            </li> 
-
-            <li class="list-group-item">
-                <div class="row">
-                    <div class="col-10">
-                    <h6>
-                    *****************
-                     </h6>
-                     </div>
-                     <div class="col">
-                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                        <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>                       
-                     </div>
-                     <div class="col">
-                         <h6>55</h6>
-
-                     </div>
-                     <div class="col">
-                         <h6>*</h6>
-                     </div>
-                     <div class="col">
-                         <h6>54</h6>
-                     </div>
-                </div>
-            </li> 
-            
-
-        </div>
+      
+        
     </div>
 
+    <div class="col-xs-10 col-sm-8">
+        
+        <div class="container-fluid bg-light py-2">
+            <h3>Projects:</h3>
+        </div>
 
-  </body>
+        <div class="row">
+          
+          <div class="col-xs-10 col-sm-6 col-md-6 mt-4">
+            <div class="card" style="width: 18rem;">
+              <img src="{{ profileuser.profile.image.url }}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <div class="mx-auto">
+                  <a href="#" class="btn btn-dark"><i class="fa fa-eye" aria-hidden="true"></i> Project Link</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-10 col-sm-6 col-md-6 mt-4">
+            <div class="card" style="width: 18rem;">
+              <img src="{{ profileuser.profile.image.url }}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <div class="mx-auto">
+                  <a href="#" class="btn btn-dark"><i class="fa fa-eye" aria-hidden="true"></i> Project Link</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-10 col-sm-6 col-md-6 mt-4">
+            <div class="card" style="width: 18rem;">
+              <img src="{{ profileuser.profile.image.url }}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <div class="mx-auto">
+                  <a href="#" class="btn btn-dark"><i class="fa fa-eye" aria-hidden="true"></i> Project Link</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-10 col-sm-6 col-md-6 mt-4">
+            <div class="card" style="width: 18rem;">
+              <img src="{{ profileuser.profile.image.url }}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <div class="mx-auto">
+                  <a href="#" class="btn btn-dark"><i class="fa fa-eye" aria-hidden="true"></i> Project Link</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="container-fluid">
+            <br><br>
+              <div class="container-fluid">
+                  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">Recent Post</a>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                          </ul>
+                        </div>
+                    </div>
+                  </nav>
+              </div>
+
+              <div class="container-fluid">
+                {% if user_posts %}
+                {% for post in user_posts %}
+                    <article class="media content-section mt-3">
+                      <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+                      <div class="media-body">
+                    <div class="row">
+                      <div class="col-9">
+                        <div class="article-metadata">
+                          <a class="mr-2" href="{% url 'profile' post.author.username %}">{{ post.author }}</a>
+                          <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+                        </div>
+                        <h4><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h4>
+                      </div>
+                      <div class="col-3">
+                        <div class="float-right mr-4">
+                          <div class="row">
+                            <h6 style="color:green;" class="mt-2 mr-4">{{ post.number_of_upvotes }} </h6>
+                            <i class="fa fa-caret-up" style="font-size:32px;color:green"></i>
+                          </div>
+                          <div class="row">                
+                            <h6 style="color:red;" class="mt-2 mr-4">{{ post.number_of_downvotes }} </h6>
+                            <i class="fa fa-caret-down" style="font-size:32px;color:red"></i>
+                          </div>
+                        </div>              
+                      </div>
+                    </div>
+                    </article>
+                {% endfor %}
+              {% else %}
+                  {% ifequal user profileuser %}
+                      <h7>You haven't posted anything yet! <br>Click </h7>
+                      <a href="{% url 'post-create' %}">here</a>
+                      <h7> to create your first post</h7>
+                  {% else %}
+                      <h6>{{ profileuser.username }} hasn't posted anything yet!</h6>
+                  {% endifequal %}
+              {% endif %}
+              </div>
+            </div>
+          </div>
+
+
+
+    </div>
+
+    
+
+  </div>
+</div>
+
+   
 
 {% endblock %}
