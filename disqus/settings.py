@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'feed.apps.FeedConfig',
     'accounts.apps.AccountsConfig',
+    'chat.apps.ChatConfig'
 ]
 
 MIDDLEWARE = [

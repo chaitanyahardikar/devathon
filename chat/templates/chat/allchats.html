@@ -1,0 +1,7 @@
+{% extends 'feed/base.html' %}
+{% block content %}
+<h1>Chats : </h1><br>
+{% for user in user_list %}
+	<h2>{{ user }}</h2>
+{% endfor %}
+{% endblock %}
