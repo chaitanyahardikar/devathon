@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post
+from .models import *
 from django.contrib.auth.models import User
 from accounts.models import Profile
 from django.contrib.auth.decorators import login_required
@@ -65,6 +65,7 @@ class PostDetailView(DetailView):
 		# 	liked = True
 		context['upvotes'] = reacted_by.number_of_upvotes()
 		context['downvotes'] = reacted_by.number_of_downvotes()
+		context['comments'] = Comment.objects.filter(post=reacted_by)
 		# context['post_is_liked'] = liked
 		#context['randusers'] = User.objects.order_by('?')[:5]
 		return context
