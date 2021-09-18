@@ -29,4 +29,4 @@ def AllChats(request):
 
 
 def Conversation(request, username):
-	pass
+	return render(request, 'chat/conversation.html')
