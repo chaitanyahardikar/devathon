@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .models import *
 from django.contrib.auth.models import User
+from django.http import HttpResponse, JsonResponse
 from django.db.models import Q
+import json
 
 def unionUser(q1,q2):
 	user_list = []
@@ -29,4 +31,32 @@ def AllChats(request):
 
 
 def Conversation(request, username):
-	return render(request, 'chat/conversation.html')
+	user = request.user
+	user2 = User.objects.get(username=username)
+	if request.method == 'POST':
+		print("it is a post request")
+		data = json.loads(request.body.decode("utf-8"))
+		curr_msg = data['msg']
+		new_msg = Message(sender=user, receiver=user2, content=curr_msg)
+		new_msg.save();
+		messages = list(Message.objects.filter(Q(sender=user,receiver=user2) | Q(receiver=user,sender=user2)).order_by('timestamp').values())
+
+		messages_with_username = []
+		for message in messages:
+			msg = {}
+			msg['content'] = message['content']
+			msg['sender'] = User.objects.filter(id = message['sender_id'])[0].username
+			msg['receiver'] = User.objects.filter(id = message['receiver_id'])[0].username
+			msg['timestamp'] = message['timestamp']
+			messages_with_username.append(msg)
+		return JsonResponse(messages_with_username, safe=False)  
+
+	messages = Message.objects.filter(Q(sender=user,receiver=user2) | Q(receiver=user,sender=user2)).order_by('timestamp')
+	
+	context = {
+		'messages' : messages,
+		'user' : user,
+	}
+
+	return render(request, 'chat/conversation.html',context)
+
