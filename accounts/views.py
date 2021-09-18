@@ -72,3 +72,7 @@ def search_users(request):
 		'randusers' : User.objects.order_by('?')[:5],
 	}
 	return render(request, "accounts/search_users.html", context)
+
+
+def testing(request):
+	return render(request, 'accounts/profile2.html')
