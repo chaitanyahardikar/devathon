@@ -1,72 +1,269 @@
 {% extends "feed/base.html" %}
 {% load crispy_forms_tags %}
-{% block content %}
-    <div class="content-section">
-	  <div class="media">
-	    <img class="rounded-circle account-img" src="{{ profileuser.profile.image.url }}">
-	    <div class="media-body">
-	      <h2 class="account-heading">{{ profileuser.username }}</h2>
-	      <p class="text-secondary">{{ profileuser.email }}</p>
-        <p class="text-start">Bio : {{ profileuser.profile.bio }}</p>
 
-          <hr class="my-2" />
-              
 
-	    </div>
-	  </div>
-	    <!-- FORM HERE -->
-        {% ifequal user profileuser %}
-	    <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Profile Info</legend>
-                {{ u_form|crispy }}
-                {{ p_form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Update</button>
-            </div>
-        </form>
-        {% endifequal %}
-        <!-- USER POSTS -->
-        <hr>
-        <h2 align="justify">Posts</h2>
-        {% if user_posts %}
-            {% for post in user_posts %}
-                <article class="media content-section">
-                  <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
-                  <div class="media-body">
-                <div class="row">
-                  <div class="col-9">
-                    <div class="article-metadata">
-                      <a class="mr-2" href="{% url 'profile' post.author.username %}">{{ post.author }}</a>
-                      <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+{% block container %} 
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-10 col-sm-6 col-md-4">
+
+        <div class="container-fluid">
+
+            <div class="container-fluid">
+              <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Basic Profile</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      </ul>
+                      
+                      {% ifequal u user %}   
+                          <a href="{% url 'profile_edit' %}" class="btn btn-outline-success" type="button">Edit Profile</a>
+                      {% endifequal %}            
+                        
+                      
                     </div>
-                    <h4><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h4>
-                  </div>
-                  <div class="col-3">
-                    <div class="float-right mr-4">
-                      <div class="row">
-                        <h6 style="color:green;" class="mt-2 mr-4">{{ post.number_of_upvotes }} </h6>
-                        <i class="fa fa-caret-up" style="font-size:32px;color:green"></i>
-                      </div>
-                      <div class="row">                
-                        <h6 style="color:red;" class="mt-2 mr-4">{{ post.number_of_downvotes }} </h6>
-                        <i class="fa fa-caret-down" style="font-size:32px;color:red"></i>
-                      </div>
-                    </div>              
+                </div>
+            </nav>
+            </div>
+            
+            <div class="container-fluid">
+                <div class="row">
+                  <div class="mx-auto">
+                    <a class="navbar-brand" href="#">
+                      <img src="{{ profileuser.profile.image.url }}" alt="" width="160" height="160">
+                    </a>
                   </div>
                 </div>
-                </article>
-            {% endfor %}
-        {% else %}
-            {% ifequal user profileuser %}
-                <h7>You haven't posted anything yet! <br>Click </h7>
-                <a href="{% url 'post-create' %}">here</a>
-                <h7> to create your first post</h7>
-            {% else %}
-                <h6>{{ profileuser.username }} hasn't posted anything yet!</h6>
-            {% endifequal %}
-        {% endif %}
-	</div>
-{% endblock content %}
+
+                <div class="container-fluid">
+                  <div class="mx-auto">
+                    <h4>{{u.username}}</h4>
+                  </div>
+                </div>   
+            </div>
+            <hr/>
+
+            <div class="row">
+                <div class="col">
+                  <div class="px-2">
+                    <h6>website</h6>
+                  </div>
+                </div>
+                <div class="col">
+                    <div class="float-right px-2">
+                      link
+                    </div>
+                </div>
+            </div>
+            <hr/>
+
+            <div class="row">
+                <div class="col">
+                  <div class="px-2">
+                    <h6>Branch</h6>
+                  </div>
+                </div>
+                <div class="col">
+                    <div class="float-right px-2">
+                      {{ profileuser.branch }}
+                    </div>
+                </div>
+            </div>
+            <hr/>
+
+            <div class="row">
+                <div class="col">
+                  <div class="px-2">
+                    <h6>Year</h6>
+                  </div>
+                </div>
+                <div class="col">
+                    <div class="float-right px-2">
+                      {{ u.year }}
+                    </div>
+                </div>
+            </div>
+            <hr/>
+        </div>
+        
+
+
+
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Reputations</a>  
+                </div>
+            </nav>
+
+            <br>
+            <div class="row">
+                <div class="col">
+                  <div class="px-2">
+                    <h6>website</h6>
+                  </div>
+                </div>
+                <div class="col">
+                    <div class="float-right px-2">
+                      link
+                    </div>
+                </div>
+            </div>
+            <hr/>
+
+            <div class="row">
+                <div class="col">
+                  <div class="px-2">
+                    <h6>Branch</h6>
+                  </div>
+                </div>
+                <div class="col">
+                    <div class="float-right px-2">
+                      CSE
+                    </div>
+                </div>
+            </div>
+            <hr/>
+        </div>
+      
+        
+    </div>
+
+    <div class="col-xs-10 col-sm-8">
+        
+        <div class="container-fluid bg-light py-2">
+            <h3>Projects:</h3>
+        </div>
+
+        <div class="row">
+          
+          <div class="col-xs-10 col-sm-6 col-md-6 mt-4">
+            <div class="card" style="width: 18rem;">
+              <img src="{{ profileuser.profile.image.url }}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <div class="mx-auto">
+                  <a href="#" class="btn btn-dark"><i class="fa fa-eye" aria-hidden="true"></i> Project Link</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-10 col-sm-6 col-md-6 mt-4">
+            <div class="card" style="width: 18rem;">
+              <img src="{{ profileuser.profile.image.url }}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <div class="mx-auto">
+                  <a href="#" class="btn btn-dark"><i class="fa fa-eye" aria-hidden="true"></i> Project Link</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-10 col-sm-6 col-md-6 mt-4">
+            <div class="card" style="width: 18rem;">
+              <img src="{{ profileuser.profile.image.url }}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <div class="mx-auto">
+                  <a href="#" class="btn btn-dark"><i class="fa fa-eye" aria-hidden="true"></i> Project Link</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-10 col-sm-6 col-md-6 mt-4">
+            <div class="card" style="width: 18rem;">
+              <img src="{{ profileuser.profile.image.url }}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <div class="mx-auto">
+                  <a href="#" class="btn btn-dark"><i class="fa fa-eye" aria-hidden="true"></i> Project Link</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="container-fluid">
+            <br><br>
+              <div class="container-fluid">
+                  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">Recent Post</a>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                          </ul>
+                        </div>
+                    </div>
+                  </nav>
+              </div>
+
+              <div class="container-fluid">
+                {% if user_posts %}
+                {% for post in user_posts %}
+                    <article class="media content-section mt-3">
+                      <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+                      <div class="media-body">
+                    <div class="row">
+                      <div class="col-9">
+                        <div class="article-metadata">
+                          <a class="mr-2" href="{% url 'profile' post.author.username %}">{{ post.author }}</a>
+                          <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+                        </div>
+                        <h4><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h4>
+                      </div>
+                      <div class="col-3">
+                        <div class="float-right mr-4">
+                          <div class="row">
+                            <h6 style="color:green;" class="mt-2 mr-4">{{ post.number_of_upvotes }} </h6>
+                            <i class="fa fa-caret-up" style="font-size:32px;color:green"></i>
+                          </div>
+                          <div class="row">                
+                            <h6 style="color:red;" class="mt-2 mr-4">{{ post.number_of_downvotes }} </h6>
+                            <i class="fa fa-caret-down" style="font-size:32px;color:red"></i>
+                          </div>
+                        </div>              
+                      </div>
+                    </div>
+                    </article>
+                {% endfor %}
+              {% else %}
+                  {% ifequal user profileuser %}
+                      <h7>You haven't posted anything yet! <br>Click </h7>
+                      <a href="{% url 'post-create' %}">here</a>
+                      <h7> to create your first post</h7>
+                  {% else %}
+                      <h6>{{ profileuser.username }} hasn't posted anything yet!</h6>
+                  {% endifequal %}
+              {% endif %}
+              </div>
+            </div>
+          </div>
+
+
+
+    </div>
+
+    
+
+  </div>
+</div>
+
+   
+
+{% endblock %}

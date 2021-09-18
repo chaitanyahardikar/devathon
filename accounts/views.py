@@ -30,52 +30,9 @@ def register(request):
 		form = UserRegisterForm()
 	return render(request, 'accounts/register.html', {'form': form})
 
-# @login_required
-# def profile(request, username):
-# 	if(request.method == 'POST'):
-# 		u_form = UserUpdateForm(request.POST, instance=request.user)
-# 		p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
-
-# 		if u_form.is_valid() and p_form.is_valid():
-# 			u_form.save()
-# 			p_form.save()
-# 			messages.success(request, f'Your account has been updated!')
-# 			return redirect('profile', request.user.username)
-
-# 	else:
-# 		u_form = UserUpdateForm(instance=request.user)
-# 		p_form = ProfileUpdateForm(instance=request.user.profile)
-
-# 	user = request.user
-# 	profileuser = User.objects.get(username=username)
-# 	p = profileuser.profile
-# 	u = p.user
-# 	user_posts = Post.objects.filter(author=profileuser).order_by('-date_posted')
-	
-
-# 	context = {
-# 		'u' : u,
-# 		'u_form': u_form,
-# 		'p_form': p_form,
-# 		'user_posts' : user_posts,
-# 		'user' : user,
-# 		'profileuser' : profileuser,
-# 	}
-# 	return render(request, 'accounts/profile.html', context)
-
 @login_required
-def search_users(request):
-	query = request.GET.get('q')
-	object_list = User.objects.filter(username__icontains=query)
-	context ={
-		'users': object_list,
-		'randusers' : User.objects.order_by('?')[:5],
-	}
-	return render(request, "accounts/search_users.html", context)
-
-
-@login_required
-def profile(request, username):
+def profile_edit(request):
+	username = request.user.username
 	if(request.method == 'POST'):
 		u_form = UserUpdateForm(request.POST, instance=request.user)
 		p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -105,8 +62,35 @@ def profile(request, username):
 		'user' : user,
 		'profileuser' : profileuser,
 	}
-	return render(request, 'accounts/profile2.html', context)
+	return render(request, 'accounts/profile_edit.html', context)
+
+@login_required
+def search_users(request):
+	query = request.GET.get('q')
+	object_list = User.objects.filter(username__icontains=query)
+	context ={
+		'users': object_list,
+		'randusers' : User.objects.order_by('?')[:5],
+	}
+	return render(request, "accounts/search_users.html", context)
 
 
-def testing(request):
-	pass
+@login_required
+def profile(request, username):
+	user = request.user
+	profileuser = User.objects.get(username=username)
+	p = profileuser.profile
+	u = p.user
+	user_posts = Post.objects.filter(author=profileuser).order_by('-date_posted')
+	print(p)
+	print(u)
+	context = {
+		'u' : u,
+		'user_posts' : user_posts,
+		'user' : user,
+		'profileuser' : profileuser,
+	}
+	return render(request, 'accounts/profile.html', context)
+
+
+
