@@ -15,15 +15,13 @@
               <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Basic Profile</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
-                    </button>
+                    
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                      </ul>
                       
                       {% ifequal u user %}   
-                          <a href="{% url 'profile_edit' %}" class="btn btn-outline-success" type="button">Edit Profile</a>
+                          <a href="{% url 'profile_edit' %}" class="btn btn-success" type="button">Edit Profile</a>
+                      {% else %}
+                          <a href="{% url 'conversation' u.username %}" class="btn btn-success" type="button">Chat</a>
                       {% endifequal %}            
                         
                       
@@ -43,21 +41,21 @@
 
                 <div class="container-fluid">
                   <div class="mx-auto">
-                    <h4>{{u.username}}</h4>
+                    <h4>{{u.profile.name}}</h4>
                   </div>
                 </div>   
             </div>
             <hr/>
 
             <div class="row">
-                <div class="col">
+                <div class="col-4">
                   <div class="px-2">
-                    <h6>website</h6>
+                    <h6>Mail</h6>
                   </div>
                 </div>
-                <div class="col">
+                <div class="col-8">
                     <div class="float-right px-2">
-                      link
+                      {{ u.email }}
                     </div>
                 </div>
             </div>
@@ -71,7 +69,7 @@
                 </div>
                 <div class="col">
                     <div class="float-right px-2">
-                      {{ profileuser.branch }}
+                      {{ profileuser.profile.branch }}
                     </div>
                 </div>
             </div>
@@ -85,7 +83,7 @@
                 </div>
                 <div class="col">
                     <div class="float-right px-2">
-                      {{ u.year }}
+                      {{ profileuser.profile.year }}
                     </div>
                 </div>
             </div>

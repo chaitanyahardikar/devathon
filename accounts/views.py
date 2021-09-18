@@ -24,6 +24,12 @@ def register(request):
 		if form.is_valid():
 			form.save()
 			username = form.cleaned_data.get('username')
+			user = User.objects.get(username = username)
+			name = form.cleaned_data.get('name')
+			branch = form.cleaned_data.get('branch')
+			year = form.cleaned_data.get('year')
+			profile = Profile(user = user, name = name, branch=branch, year=year);
+			profile.save()
 			messages.success(request, f'Account created for {username}. Please login to proceed!')
 			return redirect('login')
 	else:
