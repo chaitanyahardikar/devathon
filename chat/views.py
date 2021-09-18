@@ -51,6 +51,11 @@ def Conversation(request, username):
 			msg['sender'] = User.objects.filter(id = message['sender_id'])[0].username
 			msg['receiver'] = User.objects.filter(id = message['receiver_id'])[0].username
 			msg['timestamp'] = message['timestamp']
+			temp = str(message['timestamp'])
+			# 2021-09-18T17:49:30.180Z
+			msg_time = temp[11:16]
+			msg['msg_time'] = msg_time
+
 			messages_with_username.append(msg)
 		return JsonResponse(messages_with_username, safe=False)  
 

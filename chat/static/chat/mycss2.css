@@ -4,7 +4,7 @@ body {
     padding: 0 20px;
   }
   
-  .container {
+  .container2 {
     border: 2px solid #dedede;
     background-color: #f1f1f1;
     border-radius: 5px;
@@ -20,13 +20,13 @@ body {
     background-color: #ddd;
   }
   
-  .container::after {
+  .container2::after {
     content: "";
     clear: both;
     display: table;
   }
   
-  .container img {
+  .container2 img {
     float: left;
     max-width: 60px;
     width: 100%;
@@ -34,7 +34,7 @@ body {
     border-radius: 50%;
   }
   
-  .container img.right {
+  .container2 img.right {
     float: right;
     margin-left: 20px;
     margin-right:0;
