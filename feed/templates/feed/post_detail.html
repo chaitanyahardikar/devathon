@@ -20,8 +20,8 @@
 	    <p class="article-content">{{ post.content }}</p>
 
 		{% if user.is_authenticated %}
-		  <button type="submit" name="post_id"  class="btn btn-info">{{upvotes}} Up</button>
-		  <button type="submit" name="post_id"  class="btn btn-info"> {{downvotes}} Down</button>
+		  <button type="submit" name="post_id" id="upvote" class="btn btn-info"><span id="up_cnt">{{upvotes}}</span> Up</button>
+		  <button type="submit" name="post_id" id="downvote" class="btn btn-info"> {{downvotes}} Down</button>
 		{% else %}
 		  <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Log in to upvote / downvote this article!</a><br>
 		{% endif %}
@@ -29,4 +29,28 @@
 
 	  </div>
 	</article>
+
+	<script type="text/javascript">
+		$("#upvote").on('click',,function(e){
+			$.ajax({
+				type:'POST',
+				url:'',
+				datatype:'json',
+				data:{
+					post_id: {{object.id}}
+					csrfmiddlewaretoken:'{{csrf_token}}' 
+				},
+				
+				success: function (data) {						
+				document.getElementById('#up_cnt').innerHTML={{upvotes}} + 1;					                
+				},
+                error: function() {
+        			console.log("Some error occured");
+       	 			alert("Some error occured");
+      			}     			
+      			
+				});
+ 	return false;
+	});
+	</script>
 {% endblock content %}
