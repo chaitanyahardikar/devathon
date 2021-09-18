@@ -7,8 +7,9 @@ from accounts.models import Profile
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
+import json
 
 # import random
 
@@ -121,22 +122,45 @@ def about(request):
 	return render(request, 'feed/about.html', {'title': 'About'})
 
 def PostUpvote(request, pk):
-    post = get_object_or_404(Post, id=request.POST.get('post_id'))
-    if post.upvote.filter(id=request.user.id).exists():
-        post.upvote.remove(request.user)
+    print("check")
+    data = json.loads(request.body.decode("utf-8"))
+    id = data['post_id']
+    only_check = data['only_check']
+    post = get_object_or_404(Post, id=id)
+    number_of_upvotes = 0
+    if only_check == 1:
+    	number_of_upvotes = post.number_of_upvotes()
     else:
-        post.upvote.add(request.user)
+	    if post.upvote.filter(id=request.user.id).exists():
+	        post.upvote.remove(request.user)
+	    else:
+	        post.upvote.add(request.user)
+	        if post.downvote.filter(id=request.user.id).exists():
+	        	post.downvote.remove(request.user)
+	    number_of_upvotes = post.number_of_upvotes()
+    
+    return HttpResponse(number_of_upvotes)
 
-    return HttpResponseRedirect(reverse('post-detail', args=[str(pk)]))
 
 def PostDownvote(request, pk):
-    post = get_object_or_404(Post, id=request.POST.get('post_id'))
-    if post.downvote.filter(id=request.user.id).exists():
-        post.downvote.remove(request.user)
+    data = json.loads(request.body.decode("utf-8"))
+    id = data['post_id']
+    only_check = data['only_check']
+    post = get_object_or_404(Post, id=id)
+    number_of_downvotes = 0
+    if only_check == 1:
+    	number_of_downvotes = post.number_of_downvotes()
     else:
-        post.downvote.add(request.user)
-
-    return HttpResponseRedirect(reverse('post-detail', args=[str(pk)]))
+	    if post.downvote.filter(id=request.user.id).exists():
+	        post.downvote.remove(request.user)
+	    else:
+	        post.downvote.add(request.user)
+	        if post.upvote.filter(id=request.user.id).exists():
+	        	post.upvote.remove(request.user)
+	    number_of_downvotes = post.number_of_downvotes()
+    return HttpResponse(number_of_downvotes)
+    # return HttpResponse({"ok" : number_of_downvotes, "cnt": number_of_downvotes})
+    
 
 # In upvote downvote make sure user doesn't do both
 

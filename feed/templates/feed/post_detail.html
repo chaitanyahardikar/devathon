@@ -20,8 +20,8 @@
 	    <p class="article-content">{{ post.content }}</p>
 
 		{% if user.is_authenticated %}
-		  <button type="submit" name="post_id" id="upvote" class="btn btn-info"><span id="up_cnt">{{upvotes}}</span> Up</button>
-		  <button type="submit" name="post_id" id="downvote" class="btn btn-info"> {{downvotes}} Down</button>
+		  <button type="button" name="post_id" id="upvote" class="btn btn-info"><span id="up_cnt">{{upvotes}}</span> Up</button>
+		  <button type="button" name="post_id" id="downvote" class="btn btn-info"><span id="down_cnt">{{downvotes}}</span> Down</button>
 		{% else %}
 		  <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Log in to upvote / downvote this article!</a><br>
 		{% endif %}
@@ -30,27 +30,63 @@
 	  </div>
 	</article>
 
-	<script type="text/javascript">
-		$("#upvote").on('click',,function(e){
-			$.ajax({
-				type:'POST',
-				url:'',
-				datatype:'json',
-				data:{
-					post_id: {{object.id}}
-					csrfmiddlewaretoken:'{{csrf_token}}' 
-				},
-				
-				success: function (data) {						
-				document.getElementById('#up_cnt').innerHTML={{upvotes}} + 1;					                
-				},
-                error: function() {
-        			console.log("Some error occured");
-       	 			alert("Some error occured");
-      			}     			
-      			
-				});
- 	return false;
-	});
-	</script>
+	
 {% endblock content %}
+
+{% block script %}
+<script type="text/javascript">
+
+async function updateUpvoteDownVote(url, only_check)
+{
+	var csrftoken = "{{csrf_token}}";
+
+	let postId = {{object.id}};
+	const obj = {post_id: postId, only_check: only_check};
+	const data = JSON.stringify(obj);
+
+	let params = {
+				method: 'POST',
+				body: data,
+				headers: { 'Accept': 'application/json, text/plain',
+					'Content-Type': 'application/json',
+					"X-CSRFToken": csrftoken },
+				}
+	
+	
+	await fetch(url, params).then(response => response.json()).then(data => {qnty=data; return qnty;} );
+	return qnty;
+}
+
+document.getElementById("upvote").addEventListener("click", function() {
+
+	let up_url = "{% url 'post-upvote' object.id %}";
+	let down_url = "{% url 'post-downvote' object.id %}";
+
+	updateUpvoteDownVote(up_url, 0).then(qnty => {
+		document.getElementById('up_cnt').innerHTML= qnty;
+		
+		updateUpvoteDownVote(down_url, 1).then(qnty => {
+		document.getElementById('down_cnt').innerHTML= qnty;
+		console.log(qnty);
+		})
+	})
+});
+
+
+document.getElementById("downvote").addEventListener("click", function() {
+
+	let up_url = "{% url 'post-upvote' object.id %}";
+	let down_url = "{% url 'post-downvote' object.id %}";
+
+	updateUpvoteDownVote(down_url, 0).then(qnty => {
+		document.getElementById('down_cnt').innerHTML= qnty;
+		updateUpvoteDownVote(up_url, 1).then(qnty => {
+		document.getElementById('up_cnt').innerHTML= qnty;
+		console.log(qnty);
+	})
+	})	
+});
+
+
+	</script>
+{% endblock script %}
