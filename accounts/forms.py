@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
 
 class UserRegisterForm(UserCreationForm):
-	email = forms.EmailField()
+	email = forms.EmailField(label = 'College Email id')
 	branch = forms.CharField()
 	year = forms.IntegerField()
 

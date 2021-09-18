@@ -18,7 +18,7 @@ def register(request):
 	if(request.method == 'POST'):
 		form = UserRegisterForm(request.POST)
 		email = request.POST['email']
-		if (email.endswith('.nitw.ac.in') == False):
+		if (email.endswith('nitw.ac.in') == False):
 			messages.error(request,'Please enter a NITW email!')
 			return render(request, 'accounts/register.html', {'form':form})
 		if form.is_valid():
