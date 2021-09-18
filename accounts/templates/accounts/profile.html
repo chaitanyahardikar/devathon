@@ -10,48 +10,7 @@
         <p class="text-start">Bio : {{ profileuser.profile.bio }}</p>
 
           <hr class="my-2" />
-              {% if request.user == u %}
-              <br>
-              {% else %} {% if button_status == 'not_friend' %}
-              <small
-                ><a
-                  class="btn btn-primary"
-                  href="/users/friend-request/send/{{ u.id }}"
-                  >Add Friend</a
-                ></small
-              >
-              {% elif button_status == 'friend_request_sent' %}
-              <small
-                ><a
-                  class="btn btn-warning"
-                  href="/users/friend-request/cancel/{{ u.id }}"
-                  >Cancel Request</a
-                ></small
-              >
-              {% elif button_status == 'friend_request_received' %}
-              <small
-                ><a
-                  class="btn btn-success mr-2"
-                  href="/users/friend-request/accept/{{ u.id }}"
-                  >Accept Request</a
-                ></small
-              >
-              <small
-                ><a
-                  class="btn btn-danger"
-                  href="/users/friend-request/delete/{{ u.id }}"
-                  >Reject Request</a
-                ></small
-              >
-              {% else %}
-              <small
-                ><a
-                  class="btn btn-danger"
-                  href="/users/friend/delete/{{ u.id }}"
-                  >UnFriend</a
-                ></small
-              >
-              {% endif %} {% endif %}
+              
 
 	    </div>
 	  </div>
