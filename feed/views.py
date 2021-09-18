@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import *
@@ -6,7 +5,7 @@ from django.contrib.auth.models import User
 from accounts.models import Profile
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 import json
@@ -160,8 +159,16 @@ def PostDownvote(request, pk):
 	        	post.upvote.remove(request.user)
 	    number_of_downvotes = post.number_of_downvotes()
     return HttpResponse(number_of_downvotes)
-    # return HttpResponse({"ok" : number_of_downvotes, "cnt": number_of_downvotes})
-    
 
-# In upvote downvote make sure user doesn't do both
+@login_required
+def comment_create(request, pk):
+    if request.method == 'POST':
+        post = get_object_or_404(Post, pk=pk)
+        content = request.POST.get('post_comment')
+        com_user = request.user
 
+        if not content:
+        	return redirect('post-detail', pk)
+
+    Comment.objects.create(post=post, author=com_user, content=content)
+    return redirect('post-detail', pk)

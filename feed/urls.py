@@ -14,4 +14,5 @@ urlpatterns = [
     path('profile/<str:username>', accounts_views.profile, name='profile'),
     path('post-upvote/<int:pk>', views.PostUpvote, name='post-upvote'),
     path('post-downvote/<int:pk>', views.PostDownvote, name='post-downvote'),
+    path('comment/<int:pk>', views.comment_create, name='comment'),
 ]
