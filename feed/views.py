@@ -181,6 +181,7 @@ def project_upload(request):
 		content = request.POST.get('content')
 		link = request.POST.get('link')
 		img = request.POST.get('img')
+		print(img)
 		author = request.user
 		project = Project(author=author, title=title, content=content, link=link, image=img)
 		project.save()

@@ -89,7 +89,7 @@ def profile(request, username):
 	u = p.user
 	user_posts = Post.objects.filter(author=profileuser).order_by('-date_posted')
 	projects = Project.objects.filter(author=profileuser)
-	print(p)
+	print(projects.values())
 	print(u)
 	context = {
 		'u' : u,
