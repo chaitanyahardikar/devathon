@@ -144,7 +144,7 @@
             {% for project in projects %}
             <div class="col-xs-10 col-sm-6 col-md-6 mt-4">
               <div class="card" style="width: 18rem;">
-                <img src="{{ profileuser.profile.image.url }}" class="card-img-top" alt="...">
+                <img src="/media/{{ project.image }}" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">{{ project.title }}</h5>
                   <p class="card-text">{{ project.content }}</p>
@@ -155,7 +155,7 @@
               </div>
             </div>
             {% endfor %}
-            
+
         </div>         
 
 

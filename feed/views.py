@@ -180,7 +180,7 @@ def project_upload(request):
 		title = request.POST.get('title')
 		content = request.POST.get('content')
 		link = request.POST.get('link')
-		img = request.POST.get('img')
+		img = request.FILES['img']
 		print(img)
 		author = request.user
 		project = Project(author=author, title=title, content=content, link=link, image=img)
