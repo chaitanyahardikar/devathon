@@ -1,7 +1,13 @@
 {% extends 'feed/base.html' %}
 {% block content %}
 <h1>Chats : </h1><br>
-{% for user in user_list %}
-	<h2>{{ user }}</h2>
-{% endfor %}
+
+<ul class="list-group">
+	{% for user in user_list %}
+	  <li class="list-group-item">
+	  	<a href="{% url 'conversation' user %}">{{ user }}</a>
+	  </li>
+  	{% endfor %}
+</ul>
+
 {% endblock %}
