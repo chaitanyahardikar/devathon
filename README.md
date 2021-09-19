@@ -6,7 +6,7 @@ Users can also post a doubt anonymously in case they are afraid to ask a doubt i
 This website will aid students in their overall growth and educate them about current curricular advancements, among other things.
 Students can also message their faculty through our chat feature.
 
-[Here](https://disqus.pythonanywhere.com/) is the link for the demonstration of our project.
+#### [Here](https://disqus.pythonanywhere.com/) is the link for the demonstration of our project.
 <br>
 
 ## TechStack
