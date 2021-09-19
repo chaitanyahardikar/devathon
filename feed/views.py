@@ -118,8 +118,6 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		return False
 
 
-def about(request):
-	return render(request, 'feed/about.html', {'title': 'About'})
 
 def PostUpvote(request, pk):
     print("check")

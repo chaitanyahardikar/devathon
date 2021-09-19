@@ -14,7 +14,7 @@ class Profile(models.Model):
 	ans_cnt = models.IntegerField(default=0)
 
 	def __str__(self):
-		return f'self.user.username Profile'
+		return self.name
 
 	def save(self, *args, **kwargs):
 		super(Profile, self).save(*args, **kwargs)
