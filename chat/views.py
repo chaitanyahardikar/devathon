@@ -33,7 +33,6 @@ def Conversation(request, username):
 	user = request.user
 	user2 = User.objects.get(username=username)
 	if request.method == 'POST':
-		print("it is a post request")
 		data = json.loads(request.body.decode("utf-8"))
 		curr_msg = data['msg']
 		fetch_only = data['fetch_only']

@@ -24,8 +24,6 @@ import json
 
 # #uses cbv
 # def home(request):
-# 	print("1")
-# 	print(randusers)
 # 	context = {
 #         'posts': Post.objects.all(),
 #         'randusers' : User.objects.order_by('?')[:5],
@@ -42,13 +40,6 @@ class PostListView(LoginRequiredMixin, ListView):
 	def get_context_data(self, **kwargs):
 		context = super(PostListView, self).get_context_data(**kwargs)
 		context['randusers'] = User.objects.order_by('?')[:5]
-		
-		# likes_connected = get_object_or_404(Post, id=self.kwargs['pk'])
-		# liked = False
-		# if likes_connected.likes.filter(id=self.request.user.id).exists():
-		# 	liked = True
-		# context['number_of_likes'] = likes_connected.number_of_likes()
-		# context['post_is_liked'] = liked
 		return context
 
 
@@ -59,9 +50,6 @@ class PostDetailView(DetailView):
 		context = super(PostDetailView, self).get_context_data(**kwargs)
 
 		reacted_by = get_object_or_404(Post, id=self.kwargs['pk'])
-		# upvoted = False
-		# if reacted_by.likes.filter(id=self.request.user.id).exists():
-		# 	liked = True
 		context['upvotes'] = reacted_by.number_of_upvotes()
 		context['downvotes'] = reacted_by.number_of_downvotes()
 		context['comments'] = Comment.objects.filter(post=reacted_by)
@@ -120,7 +108,6 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 def PostUpvote(request, pk):
-    print("check")
     data = json.loads(request.body.decode("utf-8"))
     id = data['post_id']
     only_check = data['only_check']
@@ -174,12 +161,10 @@ def comment_create(request, pk):
 
 def project_upload(request):
 	if request.method=='POST':
-		print('posting')
 		title = request.POST.get('title')
 		content = request.POST.get('content')
 		link = request.POST.get('link')
 		img = request.FILES['img']
-		print(img)
 		author = request.user
 		project = Project(author=author, title=title, content=content, link=link, image=img)
 		project.save()
