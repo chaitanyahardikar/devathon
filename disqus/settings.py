@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-5vs-^^t@-cylivhdm2481z8#vn=uco=+=dy6akei9qjokc@83@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["disqus.pythonanywhere.com", "127.0.0.1"]
 
 
 # Application definition
@@ -125,6 +125,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,'static'),
+)
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
