@@ -33,3 +33,14 @@ class Comment(models.Model):
 	date_posted = models.DateTimeField(default=timezone.now)
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	image = models.ImageField(upload_to='uploads', blank=True)
+
+
+class Project(models.Model):
+	author = models.ForeignKey(User, on_delete=models.CASCADE)
+	title = models.CharField(max_length=255, default='')
+	content = models.CharField(max_length=255, default='')
+	image = models.ImageField(default='default.jpg' , upload_to='uploads')
+	link = models.URLField(max_length=255,default='')
+
+	def __str__(self):
+		return f'self.title'

@@ -15,4 +15,5 @@ urlpatterns = [
     path('post-upvote/<int:pk>', views.PostUpvote, name='post-upvote'),
     path('post-downvote/<int:pk>', views.PostDownvote, name='post-downvote'),
     path('comment/<int:pk>', views.comment_create, name='comment'),
+    path('project-upload/', views.project_upload, name='project_upload'),
 ]

@@ -172,3 +172,17 @@ def comment_create(request, pk):
 
     Comment.objects.create(post=post, author=com_user, content=content)
     return redirect('post-detail', pk)
+
+
+def project_upload(request):
+	if request.method=='POST':
+		print('posting')
+		title = request.POST.get('title')
+		content = request.POST.get('content')
+		link = request.POST.get('link')
+		img = request.POST.get('img')
+		author = request.user
+		project = Project(author=author, title=title, content=content, link=link, image=img)
+		project.save()
+		return redirect('profile', author.username)
+	return render(request,'feed/project_upload.html')

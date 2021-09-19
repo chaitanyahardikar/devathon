@@ -19,7 +19,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                       
                       {% ifequal u user %}   
-                          <a href="{% url 'profile_edit' %}" class="btn btn-success" type="button">Edit Profile</a>
+                          <a href="{% url 'profile_edit' %}" class="btn btn-success" type="button">Edit</a>
                       {% else %}
                           <a href="{% url 'conversation' u.username %}" class="btn btn-success" type="button">Chat</a>
                       {% endifequal %}            
@@ -140,59 +140,23 @@
         </div>
 
         <div class="row">
-          
-          <div class="col-xs-10 col-sm-6 col-md-6 mt-4">
-            <div class="card" style="width: 18rem;">
-              <img src="{{ profileuser.profile.image.url }}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <div class="mx-auto">
-                  <a href="#" class="btn btn-dark"><i class="fa fa-eye" aria-hidden="true"></i> Project Link</a>
+          <div class="container-fluid">
+            {% for project in projects %}
+            <div class="col-xs-10 col-sm-6 col-md-6 mt-4">
+              <div class="card" style="width: 18rem;">
+                <img src="{{ profileuser.profile.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{ project.title }}</h5>
+                  <p class="card-text">{{ project.content }}</p>
+                  <div class="mx-auto">
+                    <a href="{{ project.link }}" class="btn btn-dark"><i class="fa fa-eye" aria-hidden="true"></i>Project Link</a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+            {% endfor %}
+          </div>         
 
-          <div class="col-xs-10 col-sm-6 col-md-6 mt-4">
-            <div class="card" style="width: 18rem;">
-              <img src="{{ profileuser.profile.image.url }}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <div class="mx-auto">
-                  <a href="#" class="btn btn-dark"><i class="fa fa-eye" aria-hidden="true"></i> Project Link</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xs-10 col-sm-6 col-md-6 mt-4">
-            <div class="card" style="width: 18rem;">
-              <img src="{{ profileuser.profile.image.url }}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <div class="mx-auto">
-                  <a href="#" class="btn btn-dark"><i class="fa fa-eye" aria-hidden="true"></i> Project Link</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xs-10 col-sm-6 col-md-6 mt-4">
-            <div class="card" style="width: 18rem;">
-              <img src="{{ profileuser.profile.image.url }}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <div class="mx-auto">
-                  <a href="#" class="btn btn-dark"><i class="fa fa-eye" aria-hidden="true"></i> Project Link</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
 
 
@@ -242,9 +206,7 @@
                 {% endfor %}
               {% else %}
                   {% ifequal user profileuser %}
-                      <h7>You haven't posted anything yet! <br>Click </h7>
-                      <a href="{% url 'post-create' %}">here</a>
-                      <h7> to create your first post</h7>
+                      <h6>You haven't posted anything yet!</h6>
                   {% else %}
                       <h6>{{ profileuser.username }} hasn't posted anything yet!</h6>
                   {% endifequal %}

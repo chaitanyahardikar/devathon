@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
-from feed.models import Post 
+from feed.models import * 
 from .models import Profile
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
@@ -88,6 +88,7 @@ def profile(request, username):
 	p = profileuser.profile
 	u = p.user
 	user_posts = Post.objects.filter(author=profileuser).order_by('-date_posted')
+	projects = Project.objects.filter(author=profileuser)
 	print(p)
 	print(u)
 	context = {
@@ -95,6 +96,7 @@ def profile(request, username):
 		'user_posts' : user_posts,
 		'user' : user,
 		'profileuser' : profileuser,
+		'projects' : projects,
 	}
 	return render(request, 'accounts/profile.html', context)
 

@@ -1,0 +1,28 @@
+{% extends "feed/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <form method="POST" action="">
+        {% csrf_token %}
+      <div class="form-group">
+        <label>Project Title</label>
+        <input type="text" class="form-control" placeholder="Enter Title" name="title">
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <input type="text-area" class="form-control" placeholder="Enter Description" name="content">
+      </div>
+
+      <div class="form-group">
+        <label>Link</label>
+        <input type="text" class="form-control" placeholder="Enter Link" name="link">
+      </div>
+
+      <div class="form-group">
+        <label>Image</label>
+        <input type="file" class="form-control" placeholder="Enter Image" name="img">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock content %}
