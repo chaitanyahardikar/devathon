@@ -11,7 +11,7 @@ Students can also message their faculty through our chat feature.
 
 ## TechStack
 - Django (Python-based backend framework)
-- HTML, CSS & JavaScript for frontend
+- HTML, CSS and JavaScript for frontend
 
 <br>
 
